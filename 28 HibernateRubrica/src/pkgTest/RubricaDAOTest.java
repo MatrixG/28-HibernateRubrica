@@ -3,10 +3,8 @@ package pkgTest;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import pkgRubrica.*;
-import pkgDAO.*;
-import pkgExceptions.RubricaGi‡Presente;
-import pkgExceptions.RubricaNonEsiste;
+import model.*;
+import dao.*;
 
 public class RubricaDAOTest {
 
@@ -17,12 +15,7 @@ public class RubricaDAOTest {
 		RubricaDAO rDAO = new RubricaDAO();
 		Rubrica out = null;
 		
-		try {
-			out = rDAO.cercaRubricaDAO("alexboa@tiscali.it");
-		} catch (RubricaNonEsiste e) {
-		
-			e.printStackTrace();
-		}
+
 		
 		assertEquals(r.getId(), out.getId());
 		assertEquals(r.getEmail(), out.getEmail());
@@ -36,11 +29,7 @@ public class RubricaDAOTest {
 		RubricaDAO rDAO = new RubricaDAO();
 		Rubrica out = null;
 		
-		try {
-			out = rDAO.aggiungiRubricaDAO("Pinco", "pincopallino@hotmail.com");
-		} catch (RubricaGi‡Presente e) {
-			e.printStackTrace();
-		}
+
 		
 		assertEquals(r.getEmail(), out.getEmail());
 		assertEquals(r.getNomeRubrica(), out.getNomeRubrica());

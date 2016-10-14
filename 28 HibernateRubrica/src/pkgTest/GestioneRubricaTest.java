@@ -3,12 +3,8 @@ package pkgTest;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import pkgExceptions.RubricaGi‡Presente;
-import pkgExceptions.RubricaNonEsiste;
-import pkgExceptions.VoceNonPresente;
-import pkgRubrica.GestioneRubrica;
-import pkgRubrica.Rubrica;
-import pkgRubrica.Voce;
+import model.*;
+import servizi.*;
 
 public class GestioneRubricaTest {
 
@@ -19,12 +15,7 @@ public class GestioneRubricaTest {
 		GestioneRubrica g = new GestioneRubrica();
 		Rubrica out = null;
 		
-		try {
-			out = g.cercaRubrica("alexboa@tiscali.it");
-		} catch (RubricaNonEsiste e) {
-			
-			e.printStackTrace();
-		}
+		
 		
 		assertEquals(r.getId(), out.getId());
 		assertEquals(r.getEmail(), out.getEmail());
@@ -38,12 +29,7 @@ public class GestioneRubricaTest {
 		GestioneRubrica g = new GestioneRubrica();
 		Rubrica out = null;
 		
-		try {
-			out = g.registraRubrica("Mario", "mario@rossi.it");
-		} catch (RubricaGi‡Presente e) {
-			
-			e.printStackTrace();
-		}
+		
 		
 		assertEquals(r.getEmail(), out.getEmail());
 		assertEquals(r.getNomeRubrica(), out.getNomeRubrica());
@@ -57,13 +43,7 @@ public class GestioneRubricaTest {
 		GestioneRubrica g = new GestioneRubrica();
 		
 		Voce out = null;
-		try {
 		
-			out = g.aggiungiVoce("alexboa@tiscali.it", v.getNome(), v.getCognome(), v.getTelefono());
-		
-		} catch (RubricaNonEsiste e) {
-			e.printStackTrace();
-		}
 		
 		assertEquals(v.getNome(), out.getNome());
 		assertEquals(v.getCognome(), out.getCognome());

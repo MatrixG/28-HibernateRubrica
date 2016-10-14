@@ -1,10 +1,10 @@
 package servizi;
 
-import pkgDAO.RubricaDAO;
-import pkgDAO.VoceDAO;
-import pkgExceptions.RubricaGi‡Presente;
-import pkgExceptions.RubricaNonEsiste;
-import pkgExceptions.VoceNonPresente;
+import dao.*;
+import model.Rubrica;
+import model.Voce;
+
+
 
 public class GestioneRubrica {
 	
@@ -13,7 +13,7 @@ public class GestioneRubrica {
 	
 	
 	// Registra una Rubrica
-	public Rubrica registraRubrica(String nome, String email) throws RubricaGi‡Presente{
+	public Rubrica registraRubrica(String nome, String email) {
 		
 		if (email != null && nome != null){
 			
@@ -23,7 +23,7 @@ public class GestioneRubrica {
 	}
 	
 	// Cerca una rubrica
-	public Rubrica cercaRubrica(String email) throws RubricaNonEsiste{
+	public Rubrica cercaRubrica(String email) {
 		
 		if (email != null){
 			
@@ -35,7 +35,7 @@ public class GestioneRubrica {
 	
 	public Voce aggiungiVoce(String nomeRubrica, String nome, 
 							 String cognome,
-							 String telefono) throws RubricaNonEsiste{
+							 String telefono){
 		
 		if (nomeRubrica != null && nome != null &&
 			cognome != null && telefono != null){
@@ -47,7 +47,7 @@ public class GestioneRubrica {
 	
 	
 	// Cerca una voce di una rubrica
-	public Voce cercaVoce(String nomeRubrica, String nome, String cognome) throws RubricaNonEsiste, VoceNonPresente{
+	public Voce cercaVoce(String nomeRubrica, String nome, String cognome) {
 
 		if (nomeRubrica != null && nome != null && cognome != null){
 			
@@ -58,7 +58,7 @@ public class GestioneRubrica {
 	
 	public Voce eliminaVoce(String nomeRubrica, 
 						    String nome, 
-						    String cognome) throws RubricaNonEsiste{
+						    String cognome) {
 		
 		if (nomeRubrica != null && nome != null && cognome != null){
 			
