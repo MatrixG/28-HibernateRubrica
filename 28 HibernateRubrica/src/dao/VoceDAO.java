@@ -1,5 +1,10 @@
 package dao;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import hibernateUtil.HibernateUtil;
 import model.*;
 
 public class VoceDAO {
@@ -7,6 +12,29 @@ public class VoceDAO {
 	private RubricaDAO rDAO = new RubricaDAO();
 	
 	public Voce cercaVoceDAO(String nomeR, String nome, String cognome) {
+		
+		Session session = HibernateUtil.openSession();
+		
+		String hql = "SELECT * " +
+				 	 "FROM Voce " +
+				 	 "WHERE Cog = :email";
+		
+		Transaction tx = null;
+		Rubrica result = null;
+		try{
+			tx = session.getTransaction();
+			tx.begin();
+			Query query = session.createQuery(hql);
+			query.setParameter("email", email);
+			result = (Rubrica) query.uniqueResult();
+			tx.commit();
+			
+		}catch (Exception e){
+			tx.rollback();
+		}finally{
+			session.close();
+		}
+		return null;
 		
 	
 	
