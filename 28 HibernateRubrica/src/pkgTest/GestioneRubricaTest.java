@@ -11,21 +11,20 @@ public class GestioneRubricaTest {
 	@Test
 	public void cercaRubricaTest() {
 		
-		Rubrica r = new Rubrica(1, "Alessandro", "alexboa@tiscali.it");
 		GestioneRubrica g = new GestioneRubrica();
-		Rubrica out = null;
+		assertNotNull(g);
 		
+		g.registraRubrica("Alessandro", "alexboa@tiscali.it");
+		Rubrica out = g.cercaRubrica("alexboa@tiscali.it");
 		
-		
-		assertEquals(r.getId(), out.getId());
-		assertEquals(r.getEmail(), out.getEmail());
-		assertEquals(r.getNomeRubrica(), out.getNomeRubrica());
+		assertEquals("alexboa@tiscali.it", out.getEmail());
+		assertEquals("Alessandro", out.getNomeRubrica());
 	}
 	
 	@Test
 	public void aggiungiRubricaTest(){
 		
-		Rubrica r = new Rubrica(1, "Mario", "mario@rossi.it");
+		Rubrica r = new Rubrica("Mario", "mario@rossi.it");
 		GestioneRubrica g = new GestioneRubrica();
 		Rubrica out = null;
 		
@@ -39,7 +38,9 @@ public class GestioneRubricaTest {
 	@Test
 	public void aggiungiVoceTest(){
 		
-		Voce v = new Voce (1, "Pablo", "Neruda", "987654");
+		
+		Rubrica r = null;
+		Voce v = new Voce (r, "Pablo", "Neruda", "987654");
 		GestioneRubrica g = new GestioneRubrica();
 		
 		Voce out = null;

@@ -11,22 +11,23 @@ public class VoceDAO {
 	
 	private RubricaDAO rDAO = new RubricaDAO();
 	
-	public Voce cercaVoceDAO(String nomeR, String nome, String cognome) {
+	public Voce cercaVoceDAO(int id_r, String nome, String cognome) {
 		
 		Session session = HibernateUtil.openSession();
 		
 		String hql = "SELECT * " +
 				 	 "FROM Voce " +
-				 	 "WHERE Cog = :email";
+				 	 "WHERE cognome = :cognome AND nome = :nome AND id";
 		
 		Transaction tx = null;
-		Rubrica result = null;
+		Voce result = null;
 		try{
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery(hql);
-			query.setParameter("email", email);
-			result = (Rubrica) query.uniqueResult();
+			query.setParameter("cognome", cognome);
+			query.setParameter("nome", nome);
+			result = (Voce) query.uniqueResult();
 			tx.commit();
 			
 		}catch (Exception e){
@@ -34,11 +35,10 @@ public class VoceDAO {
 		}finally{
 			session.close();
 		}
-		return null;
+		if (result != null)
+			return result;
 		
-	
-	
-	return null;
+		return null;
 	}
 	
 	public Voce aggiungiVoceDAO (String nomeR, String nome, String cognome, String telefono) {

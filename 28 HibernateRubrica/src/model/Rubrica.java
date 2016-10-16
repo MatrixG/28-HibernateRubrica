@@ -3,22 +3,24 @@ package model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "RUBRICA")
 public class Rubrica {
 	
-	String nomeRubrica;
-	String email;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "RUBRICA_ID")
 	int id;
-
+	String nomeRubrica;
+	String email;
+	
 	public Rubrica(){
 		
 	}
 	
-	public Rubrica(int id, String nomeRubrica, String email) {
+	public Rubrica(String nomeRubrica, String email) {
 	
 		this.nomeRubrica = nomeRubrica;
-		this.id = id;
+		this.id = 0;
 		this.email = email;
 	}
 
@@ -32,5 +34,17 @@ public class Rubrica {
 
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setNomeRubrica(String nomeRubrica) {
+		this.nomeRubrica = nomeRubrica;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

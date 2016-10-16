@@ -8,7 +8,7 @@ import model.Voce;
 
 public class GestioneRubrica {
 	
-	private RubricaDAO myDAO = new RubricaDAO();
+	private RubricaDAO rDAO = new RubricaDAO();
 	private VoceDAO vDAO = new VoceDAO();
 	
 	
@@ -17,7 +17,7 @@ public class GestioneRubrica {
 		
 		if (email != null && nome != null){
 			
-			return myDAO.aggiungiRubricaDAO(nome, email);
+			return rDAO.aggiungiRubricaDAO(nome, email);
 		}
 		return null;
 	}
@@ -27,7 +27,7 @@ public class GestioneRubrica {
 		
 		if (email != null){
 			
-			return myDAO.cercaRubricaDAO(email);
+			return rDAO.cercaRubricaDAO(email);
 		}
 		return null;
 	}
@@ -51,7 +51,11 @@ public class GestioneRubrica {
 
 		if (nomeRubrica != null && nome != null && cognome != null){
 			
-			return vDAO.cercaVoceDAO(nomeRubrica, nome, cognome);
+			Rubrica r = rDAO.cercaRubricaDAO(nomeRubrica);
+			if (r != null){
+				return vDAO.cercaVoceDAO(r.getId(), nome, cognome);
+			}
+			
 		}
 		return null;
 	}
