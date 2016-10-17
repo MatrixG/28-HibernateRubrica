@@ -10,7 +10,10 @@ public class Rubrica {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "RUBRICA_ID")
 	int id;
+	
+	@Column(name = "NOME", unique = false, nullable = false, length = 100)
 	String nomeRubrica;
+	@Column(name = "EMAIL", unique = false, nullable = false, length = 100)
 	String email;
 	
 	public Rubrica(){

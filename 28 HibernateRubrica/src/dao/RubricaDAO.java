@@ -16,7 +16,7 @@ public class RubricaDAO {
 		
 		String hql = "SELECT * " +
 				 	 "FROM Rubrica " +
-				 	 "WHERE MAIL = :email";
+				 	 "WHERE EMAIL = :email";
 		
 		Transaction tx = null;
 		Rubrica result = null;
@@ -42,8 +42,9 @@ public class RubricaDAO {
 			if (!cercaRubrica(email)){
 				Session session = HibernateUtil.openSession();
 				
-				String hql = "INSERT INTO RUBRICA(nome, mail) " +
-							 "VALUES (:nome, :mail)";
+				Rubrica r = new Rubrica(nome, email);
+//				String hql = "INSERT INTO RUBRICA('nome', 'email') " +
+//							 "VALUES ('NomeDiProva','mail@prova.it')";
 				Transaction tx = null;
 				int result = 0;
 				try {
@@ -51,10 +52,12 @@ public class RubricaDAO {
 					tx = session.getTransaction();
 					tx.begin();
 					
-					Query query = session.createQuery(hql);
-					query.setParameter("nome", nome);
-					query.setParameter("mail", email);
-					result = query.executeUpdate();
+					session.save(r);
+					
+//					Query query = session.createQuery(hql);
+//					query.setParameter("nome", nome);
+//					query.setParameter("mail", email);
+//					result = query.executeUpdate();
 					
 					tx.commit();
 				} catch (Exception e) {
@@ -75,9 +78,9 @@ public class RubricaDAO {
 		
 		Session session = HibernateUtil.openSession();
 		
-		String hql = "SELECT * " +
-			 	 "FROM Rubrica " +
-			 	 "WHERE MAIL = :email";
+		String hql = 
+					 "FROM Rubrica " +
+					 "WHERE EMAIL = :email";
 	
 		Transaction tx = null;
 		Rubrica result = null;
